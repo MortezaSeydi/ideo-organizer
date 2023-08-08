@@ -3,6 +3,7 @@ import shutil
 from pathlib import Path
 
 # input must be an absoloute path
+# entering the input path
 input_ = input("Give me the path:")
 current_path = Path(input_)
 files = []
@@ -11,6 +12,8 @@ filtered = []
 for file in files:
      if file.suffix == '.mp4' or '.avi' or '.flv' or '.mov':
             filtered.append(file)
+            
+# determining number of current video
 a = 1
 numbers = []
 for item in files:
@@ -18,14 +21,11 @@ for item in files:
         numbers.append(int(str(item)[-1]))
         a = max_ = max(numbers) + 1
 
-        
+# renaming and creating folder for videos        
 for file in filtered:
-    
     videoname = 'video number' + str(a)
-        
     Path.mkdir(current_path / videoname, exist_ok=True)
     dest =str(Path(current_path / videoname))
-        
     shutil.move(str(file), dest)
     a += 1
 
