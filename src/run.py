@@ -10,16 +10,18 @@ files = []
 f = [files.append(item) for item in current_path.iterdir()]
 filtered = []
 for file in files:
-     if file.suffix == '.mp4' or '.avi' or '.flv' or '.mov':
+     if (file.suffix in {'.mp4','.avi','.flv','.mov'}) == True:
             filtered.append(file)
             
 # determining number of current video
-a = 1
+a = 0
 numbers = []
 for item in files:
     if 'video number' in str(item):
         numbers.append(int(str(item)[-1]))
         a = max_ = max(numbers) + 1
+    else:
+        a = 0
 
 # renaming and creating folder for videos        
 for file in filtered:
@@ -30,5 +32,4 @@ for file in filtered:
     a += 1
 
 print('file orgnization finished...')
-        
         
